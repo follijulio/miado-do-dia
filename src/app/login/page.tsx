@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { oxigen } from "@/fonts/oxygen";
+import { excalifont } from "@/fonts/excalifont";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
 import { useState } from "react";
@@ -52,7 +52,7 @@ export default function Page() {
 
   return (
     <main
-      className={`${oxigen.className} h-screen w-screen flex justify-center items-center bg-black`}
+      className={`${excalifont.className} h-screen w-screen flex justify-center items-center bg-black`}
     >
       {loading ? (
         <div>

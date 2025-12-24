@@ -1,8 +1,10 @@
+import { excalifont } from "@/fonts/excalifont";
+
 export default function Page() {
   return (
     <div>
-      <div>
-        <h1>BEM-VINDO</h1>
+      <div className={` `}>
+        <h1>Bem vindo</h1>
       </div>
     </div>
   );
