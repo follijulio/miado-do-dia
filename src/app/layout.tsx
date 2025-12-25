@@ -2,6 +2,8 @@
 // @ts-ignore
 import "./globals.css";
 
+import { excalifont } from "@/fonts/excalifont";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className={`${excalifont.className} antialiased`}>{children}</body>
     </html>
   );
 }
