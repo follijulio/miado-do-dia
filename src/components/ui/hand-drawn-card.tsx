@@ -1,15 +1,18 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import rough from "roughjs";
 
 interface HandDrawCardProps extends React.ComponentProps<"div"> {
-  strokeColor?: string;
+  curvature?: number;
+  scribble?: number;
 }
 
 function HandDrawCard({
   className,
-  strokeColor = "#ffffff",
   children,
+  curvature,
+  scribble,
   ...props
 }: HandDrawCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,15 +41,16 @@ function HandDrawCard({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
 
-      const SCRIBBLE = 2;
-      const CURVATURE = 3;
-      const PADDING = 20;
+      const SCRIBBLE = scribble ? scribble : 2;
+      const CURVATURE = curvature ? curvature : 3;
+
+      const PADDING = 10;
 
       const width = rect.width - PADDING * 2;
       const height = rect.height - PADDING * 2;
 
       rc.rectangle(PADDING, PADDING, width, height, {
-        stroke: strokeColor,
+        stroke: "#ffffff",
         strokeWidth: 2,
         roughness: SCRIBBLE,
         bowing: CURVATURE,
@@ -65,7 +69,7 @@ function HandDrawCard({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [strokeColor]);
+  }, [curvature, scribble]);
 
   return (
     <div
