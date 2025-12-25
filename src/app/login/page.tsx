@@ -56,17 +56,17 @@ export default function Page() {
           <Spinner className="size-20" />
         </div>
       ) : (
-        <LoginCard onSubmit={() => onSubmit} />
+        <LoginCard onSubmit={onSubmit} />
       )}
     </main>
   );
 }
 
-interface loginCardProps {
-  onSubmit: () => void;
+interface LoginCardProps {
+  onSubmit: (values: z.infer<typeof formSchema>) => Promise<void>;
 }
 
-const LoginCard: React.FC<loginCardProps> = ({ onSubmit }) => {
+const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
   const toggleVisibility = () => {
     setVisibility(!visibility);
   };
@@ -77,7 +77,9 @@ const LoginCard: React.FC<loginCardProps> = ({ onSubmit }) => {
 
   const [visibility, setVisibility] = useState<boolean>(true);
   return (
-    <HandDrawCard className="h-3/5 w-1/4 text-white flex flex-col items-center justify-center p-6 gap-6 z-0">
+    <HandDrawCard
+      className={`h-3/5 w-1/4 text-white flex flex-col items-center justify-center p-6 gap-6 z-0`}
+    >
       <div className="z-50">
         <h2 className="text-3xl">Bem-vindo de volta!</h2>
         <section className="w-full gap-6">
@@ -93,11 +95,7 @@ const LoginCard: React.FC<loginCardProps> = ({ onSubmit }) => {
                   <FormItem>
                     <FormLabel className="text-2xl">E-mail</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder={"fulano@email.com"}
-                        {...field}
-                        onChange={() => {}}
-                      />
+                      <Input placeholder={"fulano@email.com"} {...field} />
                     </FormControl>
                   </FormItem>
                 )}
@@ -114,7 +112,6 @@ const LoginCard: React.FC<loginCardProps> = ({ onSubmit }) => {
                           type={visibility ? "password" : "text"}
                           placeholder={"*********"}
                           {...field}
-                          onChange={() => {}}
                         />
                       </FormControl>
                       <button
