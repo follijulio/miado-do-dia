@@ -2,7 +2,7 @@
 // @ts-ignore
 import "./globals.css";
 
-import { oxygen } from "@/fonts/oxygen";
+import { excalifont } from "@/fonts/excalifont";
 
 import type { Metadata } from "next";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${oxygen.className} antialiased`}>{children}</body>
+      <body className={`${excalifont.className} antialiased`}>{children}</body>
     </html>
   );
 }
