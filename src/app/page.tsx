@@ -1,5 +1,3 @@
-import { excalifont } from "@/fonts/excalifont";
-
 export default function Page() {
   return (
     <div>
