@@ -6,12 +6,14 @@ import rough from "roughjs";
 interface HandDrawCardProps extends React.ComponentProps<"div"> {
   curvature?: number;
   scribble?: number;
+  padding?: number;
 }
 
 function HandDrawCard({
   className,
   children,
   curvature,
+  padding,
   scribble,
   ...props
 }: HandDrawCardProps) {
@@ -44,7 +46,7 @@ function HandDrawCard({
       const SCRIBBLE = scribble ? scribble : 2;
       const CURVATURE = curvature ? curvature : 3;
 
-      const PADDING = 10;
+      const PADDING = padding ? padding : 10;
 
       const width = rect.width - PADDING * 2;
       const height = rect.height - PADDING * 2;
@@ -69,19 +71,20 @@ function HandDrawCard({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [curvature, scribble]);
+  }, [curvature, padding, scribble]);
 
   return (
     <div
+      data-slot="card"
       ref={containerRef}
-      className={cn("relative p-6", className)}
+      className={cn("relative ", className)}
       {...props}
     >
       <canvas
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none z-0"
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative overflow-hidden">{children}</div>
     </div>
   );
 }
