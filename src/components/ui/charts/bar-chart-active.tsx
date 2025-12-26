@@ -13,8 +13,8 @@ import {
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { IoMdCheckbox } from "react-icons/io";
-import { CustomRoughBar } from "./custom-rough-bar";
-import { HandDrawCard } from "./hand-drawn-card";
+import { HandDrawCard } from "../cards/hand-drawn-card";
+import Chart from "./index";
 
 export const description = "An interactive bar chart";
 
@@ -183,7 +183,7 @@ export function ChartBarActive({
               />
               <Bar
                 dataKey={activeChart}
-                shape={<CustomRoughBar />}
+                shape={<Chart.RoughBar />}
                 fill="transparent"
                 stroke="#ffffff"
                 radius={4}
