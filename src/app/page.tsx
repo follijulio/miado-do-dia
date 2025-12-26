@@ -169,7 +169,7 @@ const todos: Todo[] = [
 ];
 export default function Page() {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden bg--800 p-4 text-white">
+    <div className="flex h-screen w-full flex-col overflow-hidden p-4 text-white">
       <div className="shrink-0">
         <NavBar />
       </div>
@@ -218,7 +218,10 @@ function TodoList({ className, todos, ...props }: TodoListProps) {
     >
       <div className="h-full overflow-y-auto">
         {todos?.map((item, i) => (
-          <ul key={i} className="border-b border-black/10 pb-1 ">
+          <ul
+            key={`${i}-${item.creation.toISOString}`}
+            className="border-b border-black/10 pb-1 "
+          >
             <Todo todo={item} />
           </ul>
         ))}
@@ -238,10 +241,8 @@ const Todo = ({ todo }: TodoProps) => {
   };
   return (
     <li className="flex gap-2 transition-colors duration-1000">
-      <Checkbox className="bg-black" onClick={toMark} />
-      <span
-        className={`flex gap-2 ${mark && "strikethrough-animate"} flex gap-2`}
-      >
+      <Checkbox className="bg-black" checked={mark} onClick={toMark} />
+      <span className={`flex gap-2 ${mark && "strikethrough-animate"}`}>
         {todo.title}
       </span>
     </li>

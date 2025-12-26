@@ -126,8 +126,7 @@ export function ChartBarActive({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [activeChart, setActiveChart] =
-    React.useState<keyof typeof chartConfig>("tarefas");
+  const activeChart: keyof typeof chartConfig = "tarefas";
 
   const N = chartData.length;
   const width = N * 30;
@@ -147,7 +146,7 @@ export function ChartBarActive({
         <ScrollArea style={{ width: width }} className={"overflow-x-hidden"}>
           <ChartContainer
             config={chartConfig}
-            className="aspect-auto h-62.5 w-full"
+            className="aspect-auto h-[250px] w-full"
           >
             <BarChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={false} />
@@ -170,7 +169,7 @@ export function ChartBarActive({
               <ChartTooltip
                 content={
                   <ChartTooltipContent
-                    className="w-37.5 bg-black text-white rounded "
+                    className="w-[150px] bg-black text-white rounded "
                     nameKey="tarefas"
                     labelFormatter={(value) => {
                       return new Date(value).toLocaleDateString("pt-BR", {

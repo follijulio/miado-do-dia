@@ -4,7 +4,6 @@ import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 
 import { cn } from "@/lib/utils";
-import { HandDrawCard } from "../ui/hand-drawn-card";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;
@@ -172,10 +171,7 @@ function ChartTooltipContent({
   const nestLabel = payload.length === 1 && indicator !== "dot";
 
   return (
-    <HandDrawCard 
-    padding={1}
-    curvature={1}
-    scribble={1}
+    <div
       className={cn(
         "border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
         className
@@ -250,7 +246,7 @@ function ChartTooltipContent({
             );
           })}
       </div>
-    </HandDrawCard>
+    </div>
   );
 }
 

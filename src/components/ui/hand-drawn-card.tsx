@@ -43,10 +43,10 @@ function HandDrawCard({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
 
-      const SCRIBBLE = scribble ? scribble : 2;
-      const CURVATURE = curvature ? curvature : 3;
+      const SCRIBBLE = scribble ?? 2;
+      const CURVATURE = curvature ?? 3;
 
-      const PADDING = padding ? padding : 10;
+      const PADDING = padding ?? 10;
 
       const width = rect.width - PADDING * 2;
       const height = rect.height - PADDING * 2;
@@ -77,14 +77,14 @@ function HandDrawCard({
     <div
       data-slot="card"
       ref={containerRef}
-      className={cn("relative ", className)}
+      className={cn("relative p-6", className)}
       {...props}
     >
       <canvas
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none z-0"
       />
-      <div className="relative overflow-hidden">{children}</div>
+      <div className="relative z-10 overflow-hidden">{children}</div>
     </div>
   );
 }
