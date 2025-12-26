@@ -16,7 +16,7 @@ import { Button } from "@/components/shadcn-ui/button";
 import { Checkbox } from "@/components/shadcn-ui/checkbox";
 import { Input } from "@/components/shadcn-ui/input";
 import { Spinner } from "@/components/shadcn-ui/spinner";
-import { HandDrawCard } from "@/components/ui/hand-drawn-card";
+import { HandDrawCard } from "@/components/ui/cards/hand-drawn-card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

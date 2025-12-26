@@ -1,9 +1,9 @@
 "use client";
 import { Checkbox } from "@/components/shadcn-ui/checkbox";
-import { ChartBarActive } from "@/components/ui/bar-chart-active";
-import { HandDrawCard } from "@/components/ui/hand-drawn-card";
+import { HandDrawCard } from "@/components/ui/cards/hand-drawn-card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import Chart from "./../components/ui/charts/index";
 
 const todos: Todo[] = [
   // --- 5 Todos SEM Deadline ---
@@ -175,7 +175,7 @@ export default function Page() {
       </div>
       <main className="flex flex-row gap-8 overflow-hidden pt-4 min-h-0  h-full">
         <div className="h-96 w-1/2">
-          <ChartBarActive className="h-full w-full p-6" />
+          <Chart.BarActive className="h-full w-full p-6" />
         </div>
         <div className="h-96 w-1/2">
           <TodoList className="h-full w-full" todos={todos} />
