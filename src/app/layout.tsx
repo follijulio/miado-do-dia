@@ -5,6 +5,7 @@ import "./globals.css";
 import { excalifont } from "@/fonts/excalifont";
 
 import type { Metadata } from "next";
+import MainLayout from "./../components/ui/root/main-layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${excalifont.className} antialiased`}>{children}</body>
+      <body
+        className={`${excalifont.className} antialiased bg-black h-screen w-screen`}
+      >
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   );
 }

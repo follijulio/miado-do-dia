@@ -130,3 +130,28 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.strikethrough-animate {
+  position: relative;
+  display: inline-block;
+}
+
+.strikethrough-animate::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  animation: strike 0.5s ease-out forwards;
+}
+
+@keyframes strike {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

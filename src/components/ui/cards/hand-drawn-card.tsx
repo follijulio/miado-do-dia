@@ -1,15 +1,20 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import rough from "roughjs";
 
 interface HandDrawCardProps extends React.ComponentProps<"div"> {
-  strokeColor?: string;
+  curvature?: number;
+  scribble?: number;
+  padding?: number;
 }
 
 function HandDrawCard({
   className,
-  strokeColor = "#ffffff",
   children,
+  curvature,
+  padding,
+  scribble,
   ...props
 }: HandDrawCardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,15 +43,16 @@ function HandDrawCard({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
 
-      const SCRIBBLE = 2;
-      const CURVATURE = 3;
-      const PADDING = 20;
+      const SCRIBBLE = scribble ?? 2;
+      const CURVATURE = curvature ?? 3;
+
+      const PADDING = padding ?? 10;
 
       const width = rect.width - PADDING * 2;
       const height = rect.height - PADDING * 2;
 
       rc.rectangle(PADDING, PADDING, width, height, {
-        stroke: strokeColor,
+        stroke: "#ffffff",
         strokeWidth: 2,
         roughness: SCRIBBLE,
         bowing: CURVATURE,
@@ -65,10 +71,11 @@ function HandDrawCard({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [strokeColor]);
+  }, [curvature, padding, scribble]);
 
   return (
     <div
+      data-slot="card"
       ref={containerRef}
       className={cn("relative p-6", className)}
       {...props}
@@ -77,7 +84,7 @@ function HandDrawCard({
         ref={canvasRef}
         className="absolute inset-0 pointer-events-none z-0"
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 overflow-hidden">{children}</div>
     </div>
   );
 }
