@@ -17,21 +17,17 @@ import { Checkbox } from "@/components/shadcn-ui/checkbox";
 import { Input } from "@/components/shadcn-ui/input";
 import { Spinner } from "@/components/shadcn-ui/spinner";
 import { HandDrawCard } from "@/components/ui/cards/hand-drawn-card";
+import { formLoginSchema } from "@/schemas/form-user-zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const formSchema = z.object({
-  email: z.string().email("Por favor, insira um e-mail válido."),
-  senha: z.string().min(8, "A senha deve ter pelo menos 8 caracteres."),
-});
-
 export default function Page() {
   const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formLoginSchema>) => {
     console.log("valores: ");
     console.log(values);
 
@@ -63,7 +59,7 @@ export default function Page() {
 }
 
 interface LoginCardProps {
-  onSubmit: (values: z.infer<typeof formSchema>) => Promise<void>;
+  onSubmit: (values: z.infer<typeof formLoginSchema>) => Promise<void>;
 }
 
 const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
@@ -72,7 +68,7 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
   };
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formLoginSchema),
   });
 
   const [visibility, setVisibility] = useState<boolean>(true);
@@ -102,7 +98,7 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
               />
               <FormField
                 control={form.control}
-                name="senha"
+                name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-2xl">Senha</FormLabel>
