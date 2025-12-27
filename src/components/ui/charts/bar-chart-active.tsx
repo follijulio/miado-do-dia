@@ -39,9 +39,6 @@ export function ChartBarActive({
   ...props
 }: ChartBarActiveProps) {
   const activeChart: keyof typeof chartConfig = "task";
-
-  const N = data.length;
-  const width = N * 30;
   return (
     <HandDrawCard
       padding={10}
@@ -54,7 +51,7 @@ export function ChartBarActive({
         {title ?? "Chart"}
       </CardHeader>
       <CardContent className="px-2 sm:p-6 w-full overflow-x-auto">
-        <ScrollArea style={{ width: width }} className={"overflow-x-hidden"}>
+        <ScrollArea className={"overflow-x-hidden w-full"}>
           <ChartContainer
             config={chartConfig}
             className="aspect-auto h-[250px] w-full"
