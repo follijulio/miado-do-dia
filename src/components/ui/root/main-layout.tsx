@@ -6,7 +6,7 @@ interface MainLayoutProps {
 
 function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden p-4 text-white">
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-black p-4 text-white">
       <div className="shrink-0">
         <NavBar />
       </div>

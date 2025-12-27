@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${excalifont.className} antialiased bg-black h-screen w-screen overflow-y-auto`}
+        className={`${excalifont.className} antialiased bg-black h-screen w-screen`}
       >
         <MainLayout>{children}</MainLayout>
       </body>

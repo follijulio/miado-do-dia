@@ -51,7 +51,7 @@ export function ChartBarActive({
         {title ?? "Chart"}
       </CardHeader>
       <CardContent className="px-2 sm:p-6 w-full overflow-x-auto">
-        <ScrollArea className={"overflow-x-hidden w-full"}>
+        <ScrollArea className={"w-full"}>
           <ChartContainer
             config={chartConfig}
             className="aspect-auto h-[250px] w-full"

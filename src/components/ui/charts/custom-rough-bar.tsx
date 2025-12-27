@@ -38,7 +38,7 @@ const CustomRoughBar = (props: CustomRoughBarProps) => {
     <g>
       {paths.map((p, index) => (
         <path
-          key={`${p.d}-${index}-14`}
+          key={`${p.d}-${index}`}
           d={p.d}
           stroke={p.stroke}
           strokeWidth={p.strokeWidth}

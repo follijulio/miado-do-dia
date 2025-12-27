@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox } from "@/components/shadcn-ui/checkbox";
 import Todo from "@/domain/dtos/todo.dto";
 import { cn } from "@/lib/utils";
@@ -19,12 +21,12 @@ function TodoList({ className, todos, ...props }: TodoListProps) {
     >
       <div className="h-full overflow-y-auto">
         {todos?.map((item, i) => (
-          <ul
+          <div
             key={`${i}-${item.creation.toISOString()}`}
             className="border-b border-black/10 pb-1 "
           >
             <TodoCard todo={item} />
-          </ul>
+          </div>
         ))}
       </div>
     </Card.HandDraw>
