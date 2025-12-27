@@ -39,12 +39,12 @@ interface TodoProps {
 
 const TodoCard = ({ todo }: TodoProps) => {
   const [mark, setMark] = useState<boolean>(todo.finished);
-  const toMark = () => {
+  const toggleMark = () => {
     setMark(!mark);
   };
   return (
     <li className="flex gap-2 transition-colors duration-1000">
-      <Checkbox className="bg-black" checked={mark} onClick={toMark} />
+      <Checkbox className="bg-black" checked={mark} onClick={toggleMark} />
       <span className={`flex gap-2 ${mark && "strikethrough-animate"}`}>
         {todo.title}
       </span>
