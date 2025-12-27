@@ -20,7 +20,7 @@ function TodoList({ className, todos, ...props }: TodoListProps) {
       <div className="h-full overflow-y-auto">
         {todos?.map((item, i) => (
           <ul
-            key={`${i}-${item.creation.toISOString}`}
+            key={`${i}-${item.creation.toISOString()}`}
             className="border-b border-black/10 pb-1 "
           >
             <TodoCard todo={item} />
