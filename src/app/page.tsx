@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/ui/cards";
-import chartData from "@/mock/chat_data";
+import chartData from "@/mock/chart_data";
 import { todos } from "@/mock/todos";
 import Chart from "./../components/ui/charts/index";
 
