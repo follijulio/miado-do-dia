@@ -7,7 +7,7 @@ import Chart from "./../components/ui/charts/index";
 
 export default function Page() {
   return (
-    <main className="flex flex-row gap-8 overflow-hidden pt-4 min-h-0  h-full">
+    <main className="flex flex-row gap-4 overflow-hidden min-h-0  h-full">
       <div className="h-96 w-1/2">
         <Chart.BarActive data={chartData} className="h-full w-full p-6" />
       </div>
