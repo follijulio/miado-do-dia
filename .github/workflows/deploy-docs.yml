@@ -1,0 +1,33 @@
+name: Deploy Documentation
+on:
+  push:
+    branches:
+      - main # Ou a sua branch principal
+
+permissions:
+  contents: write # Necessário para o Action criar a branch de documentação
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies 🔧
+        run: npm ci # Usa o package-lock.json para uma instalação limpa
+
+      - name: Generate Documentation 📖
+        run: npm run build-docs
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs # A pasta que o TypeDoc gerou
+          branch: gh-pages # Branch onde o site será hospedado
