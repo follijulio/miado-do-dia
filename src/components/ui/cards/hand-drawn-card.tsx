@@ -77,7 +77,7 @@ function HandDrawCard({
     <div
       data-slot="card"
       ref={containerRef}
-      className={cn('relative p-4', className)}
+      className={cn('relative', className)}
       {...props}
     >
       <canvas
