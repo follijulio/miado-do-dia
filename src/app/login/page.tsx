@@ -74,7 +74,7 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
   const [visibility, setVisibility] = useState<boolean>(true);
   return (
     <HandDrawCard
-      className={`h-3/5 w-1/4 text-white flex flex-col items-center justify-center p-6 gap-6 z-0`}
+      className={`h-3/5 min-w-96 w-1/4 text-white flex flex-col items-center justify-center p-6 gap-6 z-0`}
     >
       <div className="z-50">
         <h2 className="text-3xl">Bem-vindo de volta!</h2>
