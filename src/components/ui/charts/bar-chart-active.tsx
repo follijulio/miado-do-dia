@@ -1,35 +1,35 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import * as React from 'react'
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts'
 
-import { CardContent, CardHeader } from "@/components/shadcn-ui/card";
+import { CardContent, CardHeader } from '@/components/shadcn-ui/card'
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/shadcn-ui/chart";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { HandDrawCard } from "../cards/hand-drawn-card";
-import Chart from "./index";
+} from '@/components/shadcn-ui/chart'
+import { cn } from '@/lib/utils'
+import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { HandDrawCard } from '../cards/hand-drawn-card'
+import Chart from './index'
 
-export const description = "An interactive bar chart";
+export const description = 'An interactive bar chart'
 
 const chartConfig = {
   views: {
-    label: "Page Views",
+    label: 'Page Views',
   },
   task: {
-    label: "task",
-    color: "var(--chart-2)",
+    label: 'task',
+    color: 'var(--chart-2)',
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
-interface ChartBarActiveProps extends React.ComponentProps<"div"> {
-  data: { date: string; task: number }[];
-  title?: string;
+interface ChartBarActiveProps extends React.ComponentProps<'div'> {
+  data: { date: string; task: number }[]
+  title?: string
 }
 
 export function ChartBarActive({
@@ -38,20 +38,20 @@ export function ChartBarActive({
   title,
   ...props
 }: ChartBarActiveProps) {
-  const activeChart: keyof typeof chartConfig = "task";
+  const activeChart: keyof typeof chartConfig = 'task'
   return (
     <HandDrawCard
-      padding={10}
+      padding={4}
       curvature={1}
       scribble={1}
-      className={cn("", className)}
+      className={cn('p-10', className)}
       {...props}
     >
       <CardHeader className="flex flex-col items-center border-b !p-0 sm:flex-row">
-        {title ?? "Chart"}
+        {title ?? 'Chart'}
       </CardHeader>
-      <CardContent className="px-2 sm:p-6 w-full overflow-x-auto">
-        <ScrollArea className={"w-full"}>
+      <CardContent className="w-full overflow-x-auto px-2 sm:p-6">
+        <ScrollArea className={'w-full'}>
           <ChartContainer
             config={chartConfig}
             className="aspect-auto h-[250px] w-full"
@@ -66,11 +66,11 @@ export function ChartBarActive({
                 minTickGap={12}
                 className="overflow-hidden"
                 tickFormatter={(value) => {
-                  const date = new Date(value);
-                  return date.toLocaleDateString("pt-BR", {
-                    day: "2-digit",
-                    month: "short",
-                  });
+                  const date = new Date(value)
+                  return date.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: 'short',
+                  })
                 }}
               />
               <YAxis tick />
@@ -79,15 +79,15 @@ export function ChartBarActive({
                 content={
                   <ChartTooltipContent
                     indicator="line"
-                    className="w-[150px] bg-black text-white rounded"
+                    className="w-[150px] rounded bg-black text-white"
                     nameKey="task"
                     color="#ffffff"
                     labelFormatter={(value) => {
-                      return new Date(value).toLocaleDateString("pt-BR", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "2-digit",
-                      });
+                      return new Date(value).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: '2-digit',
+                      })
                     }}
                   />
                 }
@@ -105,5 +105,5 @@ export function ChartBarActive({
         </ScrollArea>
       </CardContent>
     </HandDrawCard>
-  );
+  )
 }

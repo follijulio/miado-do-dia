@@ -39,13 +39,12 @@ function HandDrawCard({
 
       const ctx = canvas.getContext('2d')
       if (ctx) {
-        ctx.scale(dpr, dpr)
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        ctx.clearRect(0, 0, rect.width, rect.height)
       }
 
       const SCRIBBLE = scribble ?? 2
       const CURVATURE = curvature ?? 3
-
       const PADDING = padding ?? 10
 
       const width = rect.width - PADDING * 2
