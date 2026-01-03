@@ -1,4 +1,4 @@
-import NavBar from "./nav-bar";
+import SideBar from "./side-bar";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -6,11 +6,11 @@ interface MainLayoutProps {
 
 function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden bg-black p-4 text-white">
-      <div className="shrink-0">
-        <NavBar />
-      </div>
-      <div>{children}</div>
+    <div className="flex h-full w-full overflow-hidden bg-black p-4 gap-4 text-white">
+      <aside className="h-full">
+        <SideBar />
+      </aside>
+      <div className="flex-1">{children}</div>
     </div>
   );
 }

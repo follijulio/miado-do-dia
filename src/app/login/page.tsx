@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Form,
@@ -6,46 +6,46 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/shadcn-ui/form";
+} from '@/components/shadcn-ui/form'
 
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 
-import { z } from "zod";
+import { z } from 'zod'
 
-import { Button } from "@/components/shadcn-ui/button";
-import { Checkbox } from "@/components/shadcn-ui/checkbox";
-import { Input } from "@/components/shadcn-ui/input";
-import { Spinner } from "@/components/shadcn-ui/spinner";
-import { HandDrawCard } from "@/components/ui/cards/hand-drawn-card";
-import { formLoginSchema } from "@/schemas/form-user-zod-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Button } from '@/components/shadcn-ui/button'
+import { Checkbox } from '@/components/shadcn-ui/checkbox'
+import { Input } from '@/components/shadcn-ui/input'
+import { Spinner } from '@/components/shadcn-ui/spinner'
+import { HandDrawCard } from '@/components/ui/cards/hand-drawn-card'
+import { formLoginSchema } from '@/schemas/form-user-zod-schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function Page() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
   const onSubmit = async (values: z.infer<typeof formLoginSchema>) => {
-    console.log("valores: ");
-    console.log(values);
+    console.log('valores: ')
+    console.log(values)
 
     // - - -  Simulando requisição para API - - - o(*￣▽￣*)ブ
-    setLoading(true);
+    setLoading(true)
 
     // Simulando espera
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
     //redirecionando
-    router.push("/");
+    router.push('/')
 
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <main
-      className={`h-screen w-screen flex justify-center items-center bg-black`}
+      className={`flex h-screen w-screen items-center justify-center bg-black`}
     >
       {loading ? (
         <div className="text-white">
@@ -55,28 +55,26 @@ export default function Page() {
         <LoginCard onSubmit={onSubmit} />
       )}
     </main>
-  );
+  )
 }
 
 interface LoginCardProps {
-  onSubmit: (values: z.infer<typeof formLoginSchema>) => Promise<void>;
+  onSubmit: (values: z.infer<typeof formLoginSchema>) => Promise<void>
 }
 
 const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
   const toggleVisibility = () => {
-    setVisibility(!visibility);
-  };
+    setVisibility(!visibility)
+  }
 
   const form = useForm({
     resolver: zodResolver(formLoginSchema),
-  });
+  })
 
-  const [visibility, setVisibility] = useState<boolean>(true);
+  const [visibility, setVisibility] = useState<boolean>(true)
   return (
-    <HandDrawCard
-      className={`h-3/5 w-1/4 text-white flex flex-col items-center justify-center p-6 gap-6 z-0`}
-    >
-      <div className="z-50">
+    <HandDrawCard className={`z-0 h-3/5 w-1/4 min-w-96 gap-6 p-10 text-white`}>
+      <div className="flex h-full w-full flex-col items-center justify-center">
         <h2 className="text-3xl">Bem-vindo de volta!</h2>
         <section className="w-full gap-6">
           <Form {...form}>
@@ -91,7 +89,7 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
                   <FormItem>
                     <FormLabel className="text-2xl">E-mail</FormLabel>
                     <FormControl>
-                      <Input placeholder={"fulano@email.com"} {...field} />
+                      <Input placeholder={'fulano@email.com'} {...field} />
                     </FormControl>
                   </FormItem>
                 )}
@@ -105,13 +103,13 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
                     <div className="flex gap-1">
                       <FormControl>
                         <Input
-                          type={visibility ? "password" : "text"}
-                          placeholder={"*********"}
+                          type={visibility ? 'password' : 'text'}
+                          placeholder={'*********'}
                           {...field}
                         />
                       </FormControl>
                       <button
-                        className="h-10 w-10 flex justify-center items-center"
+                        className="flex h-10 w-10 items-center justify-center"
                         type="button"
                         onClick={toggleVisibility}
                       >
@@ -137,5 +135,5 @@ const LoginCard: React.FC<LoginCardProps> = ({ onSubmit }) => {
         </section>
       </div>
     </HandDrawCard>
-  );
-};
+  )
+}

@@ -1,12 +1,12 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { useEffect, useRef } from "react";
-import rough from "roughjs";
+'use client'
+import { cn } from '@/lib/utils'
+import { useEffect, useRef } from 'react'
+import rough from 'roughjs'
 
-interface HandDrawCardProps extends React.ComponentProps<"div"> {
-  curvature?: number;
-  scribble?: number;
-  padding?: number;
+interface HandDrawCardProps extends React.ComponentProps<'div'> {
+  curvature?: number
+  scribble?: number
+  padding?: number
 }
 
 function HandDrawCard({
@@ -17,76 +17,77 @@ function HandDrawCard({
   scribble,
   ...props
 }: HandDrawCardProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!canvasRef.current || !containerRef.current) return;
+    if (!canvasRef.current || !containerRef.current) return
 
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
+    const canvas = canvasRef.current
+    const container = containerRef.current
 
-    const rc = rough.canvas(canvas);
+    const rc = rough.canvas(canvas)
 
     const updateCanvasSize = () => {
-      const rect = container.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect()
+      const dpr = window.devicePixelRatio || 1
 
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
+      canvas.width = rect.width * dpr
+      canvas.height = rect.height * dpr
+      canvas.style.width = `${rect.width}px`
+      canvas.style.height = `${rect.height}px`
 
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext('2d')
       if (ctx) {
-        ctx.scale(dpr, dpr);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        ctx.clearRect(0, 0, rect.width, rect.height)
       }
 
-      const SCRIBBLE = scribble ?? 2;
-      const CURVATURE = curvature ?? 3;
+      const SCRIBBLE = scribble ?? 2
+      const CURVATURE = curvature ?? 3
+      const PADDING = padding ?? 10
 
-      const PADDING = padding ?? 10;
-
-      const width = rect.width - PADDING * 2;
-      const height = rect.height - PADDING * 2;
+      const width = rect.width - PADDING * 2
+      const height = rect.height - PADDING * 2
 
       rc.rectangle(PADDING, PADDING, width, height, {
-        stroke: "#ffffff",
+        stroke: '#ffffff',
         strokeWidth: 2,
         roughness: SCRIBBLE,
         bowing: CURVATURE,
-        fill: "transparent",
+        fill: 'transparent',
         seed: 12,
-      });
-    };
+      })
+    }
 
     const resizeObserver = new ResizeObserver(() => {
-      requestAnimationFrame(updateCanvasSize);
-    });
+      requestAnimationFrame(updateCanvasSize)
+    })
 
-    resizeObserver.observe(container);
-    updateCanvasSize();
+    resizeObserver.observe(container)
+    updateCanvasSize()
 
     return () => {
-      resizeObserver.disconnect();
-    };
-  }, [curvature, padding, scribble]);
+      resizeObserver.disconnect()
+    }
+  }, [curvature, padding, scribble])
 
   return (
     <div
       data-slot="card"
       ref={containerRef}
-      className={cn("relative p-6", className)}
+      className={cn('relative', className)}
       {...props}
     >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none z-0"
+        className="pointer-events-none absolute inset-0 z-0"
       />
-      <div className="relative z-10 overflow-hidden">{children}</div>
+      <div className={cn('relative z-10 h-full w-full overflow-hidden')}>
+        {children}
+      </div>
     </div>
-  );
+  )
 }
 
-export { HandDrawCard };
+export { HandDrawCard }
