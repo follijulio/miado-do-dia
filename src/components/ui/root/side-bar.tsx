@@ -113,7 +113,6 @@ function UserSection({ isExpanded, name }: UserSectionProps) {
 
 function SideBar() {
   const [isExpanded, setIsExpanded] = useState(false)
-  const userName = 'Folli'
 
   const toggleSidebar = useCallback(() => {
     setIsExpanded((prev) => !prev)
@@ -148,7 +147,7 @@ function SideBar() {
 
         <div className="flex w-full flex-col gap-4">
           <ThemeToggle isExpanded={isExpanded} />
-          <UserSection isExpanded={isExpanded} name={userName} />
+          <UserSection isExpanded={isExpanded} name={'Folli'} />
         </div>
       </div>
     </HandDrawCard>
