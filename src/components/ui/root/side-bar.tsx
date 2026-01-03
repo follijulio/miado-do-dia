@@ -69,14 +69,14 @@ function ThemeToggle({ isExpanded }: ThemeToggleProps) {
       >
         <button
           type="button"
-          aria-label="Ativar modo escuro"
+          aria-label="Enable dark mode"
           className="transition-opacity hover:opacity-70"
         >
           <MdDarkMode size={iconSize} />
         </button>
         <button
           type="button"
-          aria-label="Ativar modo claro"
+          aria-label="Enable light mode"
           className="transition-opacity hover:opacity-70"
         >
           <CiLight size={iconSize} />
