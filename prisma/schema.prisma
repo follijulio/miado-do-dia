@@ -28,7 +28,17 @@ model Todo {
   completedAt DateTime?
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
+  subTasks    SubTask[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
+model SubTask {
+  id        String   @id @default(uuid())
+  title     String
+  completed Boolean  @default(false)
+  todo      Todo     @relation(fields: [todoId], references: [id], onDelete: Cascade)
+  todoId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
