@@ -42,3 +42,15 @@ model SubTask {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model DailyMetric {
+  id        String   @id @default(uuid())
+  date      DateTime @db.Date
+  count     Int      @default(0)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, date])
+}
