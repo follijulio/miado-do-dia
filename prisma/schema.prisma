@@ -33,16 +33,21 @@ model Todo {
   subTasks    SubTask[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
 }
 
 model SubTask {
-  id        String   @id @default(uuid())
-  title     String
-  completed Boolean  @default(false)
-  todo      Todo     @relation(fields: [todoId], references: [id], onDelete: Cascade)
-  todoId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String    @id @default(uuid())
+  title       String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  todo        Todo      @relation(fields: [todoId], references: [id], onDelete: Cascade)
+  todoId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([todoId])
 }
 
 model DailyMetric {
