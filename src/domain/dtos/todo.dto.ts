@@ -1,12 +1,12 @@
 import { SubTaskDTO } from './subtask.dto';
-import { UserDTO } from './user.dto';
+import { UserResponseDTO } from './user/user-response.dto';
 
 export interface TodoDTO {
   id: string;
   title: string;
   completed: boolean;
   completedAt?: Date;
-  user: UserDTO;
+  user: UserResponseDTO;
   userId: string;
   subTasks: SubTaskDTO[];
   createdAt: Date;
