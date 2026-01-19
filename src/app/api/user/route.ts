@@ -1,9 +1,9 @@
 import { CreateUserController } from '@/adapters/api/controllers/create-user-crontroller';
-import { CreateUserService } from '@/adapters/api/services/create-user-service';
+import { NextRequest } from 'next/server';
 
-export function makeCreateUserController(): CreateUserController {
-  const service = new CreateUserService();
-  const controller = new CreateUserController(service);
+export async function POST(request: NextRequest) {
+  
+  const controller = new CreateUserController();
 
-  return controller;
+  return controller.handle(await request.json());
 }

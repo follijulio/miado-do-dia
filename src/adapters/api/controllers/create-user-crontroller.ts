@@ -9,7 +9,10 @@ import { ZodError } from 'zod';
 import { createUserSchema } from '../schemas/create-user.schema';
 
 export class CreateUserController {
-  constructor(private readonly createUserService: CreateUserService) {}
+  private readonly createUserService: CreateUserService;
+  constructor() {
+    this.createUserService = new CreateUserService();
+  }
 
   async handle(requestBody: unknown): Promise<NextResponse> {
     try {
