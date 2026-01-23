@@ -3,4 +3,5 @@ export interface UserResponseDTO {
   email: string;
   name: string | null;
   createdAt: Date;
+  updatedAt: Date;
 }
