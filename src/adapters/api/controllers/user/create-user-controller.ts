@@ -1,10 +1,10 @@
-import { CreateUserInputDTO } from '@/domain/dtos/user/create-user.dto';
-import { NextResponse } from 'next/server';
 import {
   CreateUserService,
   UserAlreadyExistsError,
-} from '../services/create-user-service';
-import { buildResponse } from './../../helpers/api-response.helper';
+} from '@/adapters/api/services/user/create-user-service';
+import { buildResponse } from '@/adapters/helpers/api-response.helper';
+import { CreateUserInputDTO } from '@/domain/dtos/user/create-user.dto';
+import { NextResponse } from 'next/server';
 
 export class CreateUserController {
   private readonly createUserService = new CreateUserService();
