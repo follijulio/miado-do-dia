@@ -1,7 +1,7 @@
 import { CreateUserInputDTO } from '@/domain/dtos/user/create-user.dto';
+import { UserResponseDTO } from '@/domain/dtos/user/user-response.dto';
 import prisma from '@/lib/prisma';
 import { hash } from 'bcrypt';
-import { UserResponseDTO } from '@/domain/dtos/user/user-response.dto';
 
 export class UserAlreadyExistsError extends Error {
   constructor(email: string) {

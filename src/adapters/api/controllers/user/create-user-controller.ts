@@ -10,7 +10,7 @@ export class CreateUserController {
   private readonly createUserService = new CreateUserService();
   public async handle(user: CreateUserInputDTO): Promise<NextResponse> {
     if (!user) {
-      return this.handleError('No user');
+      return this.handleError('UserAlreadyExistsError');
     }
 
     try {
@@ -35,7 +35,7 @@ export class CreateUserController {
       });
     }
 
-    if (error === 'No user') {
+    if (error === 'UserAlreadyExistsError') {
       return buildResponse({
         status: 400,
         message: error,
