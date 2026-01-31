@@ -1,7 +1,7 @@
 export interface UserResponseDTO {
   id: string;
   email: string;
-  name: string | null;
+  name: string;
   createdAt: Date;
   updatedAt: Date;
 }
