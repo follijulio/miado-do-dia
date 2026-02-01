@@ -14,9 +14,9 @@ export async function GET(context: { params: Promise<{ id: string }> }) {
 
 export async function DELETE(context: { params: Promise<{ id: string }> }) {
   const params = await context.params;
-  const id  = params.id;
+  const id = params.id;
   return NextResponse.json(
-    { message: 'GET method not implemented yet.' },
+    { message: 'DELETE method not implemented yet.' },
     { status: 501 }
   );
 }
