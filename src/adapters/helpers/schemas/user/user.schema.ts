@@ -8,6 +8,13 @@ export const userCreateSchema = z.object({
 
 export const userUpdateSchema = z.object({
   email: z.string().email('invalid email format.').optional(),
-  name: z.string().min(2, 'name must be at least 2 characters long.').optional(),
-  password: z.string().min(8, 'password must be at least 8 characters long.').optional(),
+  name: z
+    .string()
+    .min(2, 'name must be at least 2 characters long.')
+    .optional(),
+  password: z
+    .string()
+    .min(8, 'password must be at least 8 characters long.')
+    .optional(),
+  phrase: z.string().optional(),
 });

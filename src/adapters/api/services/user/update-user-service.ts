@@ -18,6 +18,7 @@ export class UpdateUserService {
           email: user.email,
           name: user.name,
           passwordHash: passwordHash,
+          phrase: user.phrase,
         },
         select: {
           email: true,
