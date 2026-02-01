@@ -18,6 +18,7 @@ model User {
   email        String        @unique
   name         String?
   todos        Todo[]
+  phrase       String?
   dailyMetrics DailyMetric[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
