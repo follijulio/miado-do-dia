@@ -3,18 +3,24 @@ import {
   UserAlreadyExistsError,
 } from '@/adapters/api/services/user/create-user-service';
 import { buildResponse } from '@/adapters/helpers/api-response.helper';
+import { userCreateSchema } from '@/adapters/helpers/schemas/user/user.schema';
 import { CreateUserInputDTO } from '@/domain/dtos/user/create-user.dto';
 import { NextResponse } from 'next/server';
 
 export class CreateUserController {
   private readonly createUserService = new CreateUserService();
-  public async handle(user: CreateUserInputDTO): Promise<NextResponse> {
-    if (!user) {
-      return this.handleError('UserAlreadyExistsError');
+
+  public async handle(data: CreateUserInputDTO): Promise<NextResponse> {
+    const user = userCreateSchema.safeParse(data);
+
+    if (!user.success) {
+      this.handleError(user.error.message);
     }
 
     try {
-      const response = await this.createUserService.execute(user);
+      const response = await this.createUserService.execute(
+        user.data as CreateUserInputDTO
+      );
 
       return buildResponse({
         status: 201,
@@ -35,11 +41,11 @@ export class CreateUserController {
       });
     }
 
-    if (error === 'UserAlreadyExistsError') {
+    if (error) {
       return buildResponse({
         status: 400,
-        message: error,
-        error: 'No user',
+        message: String(error),
+        error: 'Bad Request',
       });
     }
 

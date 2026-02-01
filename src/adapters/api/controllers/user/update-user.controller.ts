@@ -1,16 +1,19 @@
 import { buildResponse } from '@/adapters/helpers/api-response.helper';
+import { userUpdateSchema } from '@/adapters/helpers/schemas/user/user.schema';
 import { UpdateUserDTO } from '@/domain/dtos/user/update-user.dto';
 import { NextResponse } from 'next/server';
 import { UpdateUserService } from '../../services/user/update-user-service';
 
 export class UpdateUserController {
   private readonly updateUserService = new UpdateUserService();
-  public async handle(id: string, user: UpdateUserDTO): Promise<NextResponse> {
-    if (!user) {
-      return this.handleError('No user data provided');
-    }
+  public async handle(id: string, data: UpdateUserDTO): Promise<NextResponse> {
+    const user = userUpdateSchema.parse(data);
+
     try {
-      const response = await this.updateUserService.execute(id, user);
+      const response = await this.updateUserService.execute(
+        id,
+        user as UpdateUserDTO
+      );
       return buildResponse({
         status: 200,
         message: 'User updated successfully',
