@@ -1,13 +1,13 @@
+import { CreateUserController } from '@/adapters/api/controllers/user/create-user-controller';
+import { ListUserController } from '@/adapters/api/controllers/user/list-user-controller';
 import { NextRequest } from 'next/server';
-import { CreateUserController } from './../../../adapters/api/controllers/create-user-controller';
-import { ListUserController } from '@/adapters/api/controllers/list-user-controller';
 
 export async function POST(request: NextRequest) {
   const controller = new CreateUserController();
 
-  const user = await request.json();
+  const data = await request.json();
 
-  return await controller.handle(user);
+  return await controller.handle(data);
 }
 
 export async function GET() {
