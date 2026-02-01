@@ -1,6 +1,6 @@
-import { ListUserService } from './../services/list-user-service';
+import { buildResponse } from '@/adapters/helpers/api-response.helper';
 import { NextResponse } from 'next/server';
-import { buildResponse } from './../../helpers/api-response.helper';
+import { ListUserService } from '../../services/user/list-user-service';
 
 export class ListUserController {
   private readonly listUserService = new ListUserService();
@@ -18,6 +18,7 @@ export class ListUserController {
   }
 
   private handleError(error: unknown): NextResponse {
+        
     return buildResponse({
       status: 500,
       message: 'Internal Server Error',
