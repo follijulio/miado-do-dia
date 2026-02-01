@@ -1,11 +1,14 @@
-import { Model } from "../model";
+import { SubTaskDTO } from './subtask.dto';
+import { UserResponseDTO } from './user/user-response.dto';
 
-interface Todo extends Model {
+export interface TodoDTO {
+  id: string;
   title: string;
-  description?: string;
-  deadline?: Date;
-  creation: Date;
-  finished: boolean;
+  completed: boolean;
+  completedAt?: Date;
+  user: UserResponseDTO;
+  userId: string;
+  subTasks: SubTaskDTO[];
+  createdAt: Date;
+  updatedAt: Date;
 }
-
-export default Todo;
