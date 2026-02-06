@@ -6,7 +6,7 @@ interface MainLayoutProps {
 
 function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex h-full w-full overflow-hidden bg-black p-4 gap-4 text-white">
+    <div className="flex h-full w-full overflow-hidden bg-black px-4 py-2 gap-4 text-white">
       <aside className="h-full">
         <SideBar />
       </aside>
