@@ -2,9 +2,9 @@
 
 import Card from '@/components/ui/cards';
 import MainLayout from '@/components/ui/root/main-layout';
-import chartData from '@/mock/chart_data';
-import { todos } from '@/mock/todos';
 import Chart from '@/components/ui/charts';
+import mockUser from '@/mock/mock_user';
+
 import SortableCard from '@/components/ui/cards/sortable-card';
 
 export default function Page() {
@@ -40,9 +40,13 @@ export default function Page() {
         <section className="flex flex-1 gap-4 overflow-hidden">
           <div className="flex h-full w-3/4 flex-col gap-2">
             <div className="flex h-1/2 w-full gap-2">
-              <Chart.BarActive data={chartData} className="h-full w-1/2" />
-              <Card.TodoList className="h-full w-1/2" todos={todos} />
+              <Chart.BarActive
+                data={mockUser.daylyMetrics}
+                className="h-full w-1/2"
+              />
+              <Card.TodoList className="h-full w-1/2" todos={mockUser.todos} />
             </div>
+            <div className="h-full w-full"></div>
           </div>
 
           <aside className="w-1/4">
