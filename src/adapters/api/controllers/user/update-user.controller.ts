@@ -9,6 +9,8 @@ export class UpdateUserController {
   public async handle(id: string, data: UpdateUserDTO): Promise<NextResponse> {
     const user = userUpdateSchema.parse(data);
 
+      
+
     try {
       const response = await this.updateUserService.execute(
         id,

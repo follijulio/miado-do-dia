@@ -1,22 +1,22 @@
-import Link from 'next/link'
-import { useCallback, useState } from 'react'
-import { CiLight } from 'react-icons/ci'
-import { FaChartBar, FaList } from 'react-icons/fa'
-import { IoMdHome, IoMdSettings } from 'react-icons/io'
-import { IoLogOutOutline, IoPersonCircleOutline } from 'react-icons/io5'
+import Link from 'next/link';
+import { useCallback, useState } from 'react';
+import { CiLight } from 'react-icons/ci';
+import { FaChartBar, FaList } from 'react-icons/fa';
+import { IoMdHome, IoMdSettings } from 'react-icons/io';
+import { IoLogOutOutline, IoPersonCircleOutline } from 'react-icons/io5';
 import {
   MdDarkMode,
   MdDashboard,
   MdOutlineWorkspacePremium,
-} from 'react-icons/md'
+} from 'react-icons/md';
 
-import { HandDrawCard } from '../cards/hand-drawn-card'
+import { HandDrawCard } from '../cards/hand-drawn-card';
 
 type NavigationLink = {
-  title: string
-  icon: React.ReactNode
-  href: string
-}
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+};
 
 const NAV_ITEMS: NavigationLink[] = [
   { icon: <IoMdHome size={28} />, title: 'home', href: '/' },
@@ -29,9 +29,9 @@ const NAV_ITEMS: NavigationLink[] = [
     title: 'premium',
     href: '/premium',
   },
-]
+];
 
-type NavItemProps = NavigationLink & { isExpanded: boolean }
+type NavItemProps = NavigationLink & { isExpanded: boolean };
 
 function NavItem({ title, icon, href, isExpanded }: NavItemProps) {
   return (
@@ -46,13 +46,13 @@ function NavItem({ title, icon, href, isExpanded }: NavItemProps) {
         {isExpanded && <span className="capitalize">{title}</span>}
       </Link>
     </li>
-  )
+  );
 }
 
-type ThemeToggleProps = { isExpanded: boolean }
+type ThemeToggleProps = { isExpanded: boolean };
 
 function ThemeToggle({ isExpanded }: ThemeToggleProps) {
-  const iconSize = isExpanded ? 32 : 24
+  const iconSize = isExpanded ? 32 : 24;
 
   return (
     <HandDrawCard
@@ -83,10 +83,10 @@ function ThemeToggle({ isExpanded }: ThemeToggleProps) {
         </button>
       </div>
     </HandDrawCard>
-  )
+  );
 }
 
-type UserSectionProps = { isExpanded: boolean; name: string }
+type UserSectionProps = { isExpanded: boolean; name: string };
 
 function UserSection({ isExpanded, name }: UserSectionProps) {
   if (isExpanded) {
@@ -100,7 +100,7 @@ function UserSection({ isExpanded, name }: UserSectionProps) {
           <IoLogOutOutline size={36} className="cursor-pointer" />
         </div>
       </HandDrawCard>
-    )
+    );
   }
 
   return (
@@ -108,29 +108,29 @@ function UserSection({ isExpanded, name }: UserSectionProps) {
       <IoPersonCircleOutline size={42} />
       <IoLogOutOutline size={42} className="cursor-pointer" />
     </div>
-  )
+  );
 }
 
 function SideBar() {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleSidebar = useCallback(() => {
-    setIsExpanded((prev) => !prev)
-  }, [])
+    setIsExpanded((prev) => !prev);
+  }, []);
 
   const handleCardClick = useCallback(
     (event: React.MouseEvent) => {
-      const target = event.target as HTMLElement
-      const isLink = target.closest('a')
-      if (!isLink) toggleSidebar()
+      const target = event.target as HTMLElement;
+      const isLink = target.closest('a');
+      if (!isLink) toggleSidebar();
     },
     [toggleSidebar]
-  )
+  );
 
   return (
     <HandDrawCard
       scribble={2}
-      curvature={1}
+      curvature={0}
       className={`h-full px-2 py-6 transition-all duration-300 ${
         isExpanded ? 'min-w-64' : 'w-24'
       }`}
@@ -151,7 +151,7 @@ function SideBar() {
         </div>
       </div>
     </HandDrawCard>
-  )
+  );
 }
 
-export default SideBar
+export default SideBar;
