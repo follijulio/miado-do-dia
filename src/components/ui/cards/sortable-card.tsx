@@ -24,28 +24,12 @@ import { Edit, GripVertical } from 'lucide-react';
 import { Trash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Card from '.';
+import { Annotation } from '../../../../application/generated/prisma/browser';
 
 type NoteItem = {
   id: string;
-  content: string;
+  text: string;
 };
-
-const initialData: NoteItem[] = [
-  {
-    id: '1',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  },
-  {
-    id: '2',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse adipisci, dolores necessitatibus laudantium corrupti aliquam perferendis dolorum accusamus cupiditate fugiat sequi provident quia? Repellat, rem culpa? Vero similique a laborum?',
-  },
-  {
-    id: '3',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse adipisci, dolores necessitatibus laudantium corrupti aliquam perferendis dolorum accusamus cupiditate fugiat sequi provident quia? Repellat, rem culpa? Vero similique a laborum?',
-  },
-];
 
 interface ItemVisualProps {
   item: NoteItem;
@@ -113,7 +97,7 @@ function ItemVisual({
               <Edit className="h-4 w-4 transition-colors hover:text-blue-500" />
             </button>
           </div>
-          <div className="text-white">{item.content}</div>
+          <div className="text-white">{item.text}</div>
         </div>
       </Card.HandDraw>
     </div>
@@ -150,8 +134,12 @@ function SortableCard({ item }: { item: NoteItem }) {
   );
 }
 
-export default function MuralBoard() {
-  const [items, setItems] = useState<NoteItem[]>(initialData);
+interface MuralBoardProps {
+  items: Annotation[];
+}
+
+const MuralBoard = ({ items }: MuralBoardProps) => {
+  const [itemsState, setItemsState] = useState<Annotation[]>(items);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const sensors = useSensors(
@@ -174,7 +162,7 @@ export default function MuralBoard() {
     setActiveId(null);
 
     if (over && active.id !== over.id) {
-      setItems((items) => {
+      setItemsState((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === over.id);
         return arrayMove(items, oldIndex, newIndex);
@@ -182,7 +170,7 @@ export default function MuralBoard() {
     }
   }
 
-  const activeItem = items.find((x) => x.id === activeId);
+  const activeItem = itemsState.find((x) => x.id === activeId);
 
   return (
     <Card.HandDraw
@@ -191,7 +179,7 @@ export default function MuralBoard() {
       curvature={2}
       scribble={1}
     >
-      <h1 className="mb-6 text-2xl font-bold text-slate-200">My notes</h1>
+      <h1 className="mb-6 flex text-2xl font-bold text-slate-200">My notes</h1>
 
       <DndContext
         id="mural"
@@ -201,8 +189,8 @@ export default function MuralBoard() {
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          <div className="flex flex-col gap-2">
-            {items.map((item) => (
+          <div className="flex h-11/12 w-full flex-col gap-2 overflow-scroll rounded-md p-2">
+            {itemsState.map((item) => (
               <SortableCard key={item.id} item={item} />
             ))}
           </div>
@@ -216,4 +204,6 @@ export default function MuralBoard() {
       </DndContext>
     </Card.HandDraw>
   );
-}
+};
+
+export { MuralBoard };

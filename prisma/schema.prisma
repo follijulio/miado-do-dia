@@ -21,7 +21,7 @@ model User {
   todos        Todo[]
   phrase       String?
   dailyMetrics DailyMetric[]
-  quotes       Quote[]
+  annotations  Annotation[]
   updatedAt    DateTime      @updatedAt
   createdAt    DateTime      @default(now())
 }
@@ -65,7 +65,7 @@ model DailyMetric {
   @@unique([userId, date])
 }
 
-model Quote {
+model Annotation {
   id        String   @id @default(uuid())
   text      String
   author    String

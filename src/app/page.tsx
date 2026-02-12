@@ -4,8 +4,7 @@ import Card from '@/components/ui/cards';
 import MainLayout from '@/components/ui/root/main-layout';
 import Chart from '@/components/ui/charts';
 import mockUser from '@/mock/mock_user';
-
-import SortableCard from '@/components/ui/cards/sortable-card';
+import { MuralBoard } from '@/components/ui/cards/sortable-card';
 
 export default function Page() {
   const data =
@@ -50,7 +49,7 @@ export default function Page() {
           </div>
 
           <aside className="w-1/4">
-            <SortableCard />
+            <MuralBoard items={mockUser.annotations ?? []} />
           </aside>
         </section>
       </main>

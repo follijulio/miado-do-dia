@@ -148,20 +148,26 @@ function SortableTodoItem({
 }
 
 function TodoList({ className, todos = [], ...props }: TodoListProps) {
-  const [items, setItems] = useState<TodoDTO[]>(todos);
+  const sortTodos = (list: TodoDTO[]) => [
+    ...list.filter((item) => !item.completedAt),
+    ...list.filter((item) => item.completedAt),
+  ];
+  const [items, setItems] = useState<TodoDTO[]>(sortTodos(todos));
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const handleToggleTodo = (id: string) => {
     setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            completedAt: item.completedAt ? undefined : new Date(),
-          };
-        }
-        return item;
-      })
+      sortTodos(
+        prevItems.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              completedAt: item.completedAt ? undefined : new Date(),
+            };
+          }
+          return item;
+        })
+      )
     );
   };
 
@@ -182,7 +188,7 @@ function TodoList({ className, todos = [], ...props }: TodoListProps) {
       setItems((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
+        return sortTodos(arrayMove(items, oldIndex, newIndex));
       });
     }
   }
