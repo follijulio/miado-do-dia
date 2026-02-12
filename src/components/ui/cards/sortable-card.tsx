@@ -49,11 +49,7 @@ function ItemVisual({
   isOverlay,
 }: ItemVisualProps) {
   const getDeterministicRandom = (id: string) => {
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-      hash = id.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    return Math.abs((hash % 10) / 10);
+    return (id.charCodeAt(0) % 10) / 10;
   };
 
   const [scr] = useState(() => getDeterministicRandom(item.id));
