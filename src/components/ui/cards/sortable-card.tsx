@@ -53,7 +53,7 @@ function ItemVisual({
   };
 
   const [scr] = useState(() => getDeterministicRandom(item.id));
-
+  
   return (
     <div style={style} className="">
       <Card.HandDraw

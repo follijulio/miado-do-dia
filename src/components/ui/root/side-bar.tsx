@@ -131,7 +131,7 @@ function SideBar() {
     <HandDrawCard
       scribble={2}
       curvature={0}
-      className={`h-full px-2 py-6 transition-all duration-300 ${
+      className={`h-full px-2 py-6 transition-all duration-500 ${
         isExpanded ? 'min-w-64' : 'w-24'
       }`}
       onClick={handleCardClick}
